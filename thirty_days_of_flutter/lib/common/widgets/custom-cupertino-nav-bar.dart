@@ -7,6 +7,7 @@ class CustomCupertinoNavBar extends CupertinoNavigationBar {
       : super(
           middle: Container(
             alignment: Alignment.center,
+            width: 260,
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Container(child: Text(title)),
           ),
