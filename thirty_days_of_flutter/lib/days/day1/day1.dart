@@ -111,9 +111,8 @@ class WatchTimers extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xFFF3F3F3),
-        border: Border(bottom: BorderSide(color: Color(0xFFDDDDDD)))
-      ),
+          color: Color(0xFFF3F3F3),
+          border: Border(bottom: BorderSide(color: Color(0xFFDDDDDD)))),
       padding: EdgeInsets.only(bottom: 15),
       child: Column(
         children: <Widget>[
@@ -166,21 +165,60 @@ class WatchControls extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String startButtonText = hasStarted ? 'Stop' : 'Start';
+    Color startButtonColor = hasStarted ? Colors.red : Colors.green;
     Function onStartCallback =
         hasStarted ? this.onStopPress : this.onStartPress;
     Function recordPress = hasStarted ? onRecordPress : null;
 
-    return Row(
-      children: <Widget>[
-        RaisedButton(
-          child: Text('Record'),
-          onPressed: recordPress,
-        ),
-        RaisedButton(
-          child: Text(startButtonText),
-          onPressed: onStartCallback,
-        ),
-      ],
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+      decoration: BoxDecoration(
+        color: Color(0xFFF3F3F3),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Material(
+            shape: CircleBorder(),
+            color: Colors.white,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(100),
+              onTap: recordPress,
+              child: Container(
+                alignment: Alignment.center,
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                child: Text('Record'),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 80,
+          ),
+          Material(
+            shape: CircleBorder(),
+            color: Colors.white,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(100),
+              onTap: onStartCallback,
+              child: Container(
+                alignment: Alignment.center,
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                child: Text(startButtonText, style: TextStyle(
+                  color: startButtonColor,
+                ),),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
