@@ -109,15 +109,47 @@ class WatchTimers extends StatelessWidget {
     var resetTimeString = formatDuration(resetTimeDiff);
     var currentTimeString = formatDuration(currentTimeDiff);
 
-    return Column(
-      children: <Widget>[
-        Row(
-          children: <Widget>[Text(resetTimeString)],
-        ),
-        Row(
-          children: <Widget>[Text(currentTimeString)],
-        ),
-      ],
+    return Container(
+      decoration: BoxDecoration(
+        color: Color(0xFFF3F3F3),
+        border: Border(bottom: BorderSide(color: Color(0xFFDDDDDD)))
+      ),
+      padding: EdgeInsets.only(bottom: 15),
+      child: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                  padding: EdgeInsets.only(right: 30, top: 30, bottom: 15),
+                  child: Text(
+                    resetTimeString,
+                    style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w100,
+                        color: Color(0xFF555555),
+                        fontFamily: "RobotoMono"),
+                  ))
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                alignment: Alignment.topCenter,
+                child: Text(currentTimeString,
+                    style: const TextStyle(
+                        fontSize: 70.0,
+                        fontWeight: FontWeight.w100,
+                        color: Color(0xFF222222),
+                        fontFamily: "RobotoMono")),
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
