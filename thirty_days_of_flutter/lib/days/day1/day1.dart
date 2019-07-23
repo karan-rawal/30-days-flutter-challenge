@@ -20,6 +20,13 @@ formatDuration(Duration duration) {
   return "${twoDigitMinutes}:$twoDigitSeconds:$twoDigitMillis";
 }
 
+class Record {
+  int index;
+  String record;
+
+  Record(this.index, this.record);
+}
+
 class Day1 extends StatefulWidget {
   static const SCREEN_TITLE = 'Day 1 - Stopwatch';
   static const SCREEN_ROUTE = 'day1';
@@ -34,9 +41,17 @@ class Day1State extends State<Day1> {
   DateTime startTime = DateTime.now();
   DateTime currentTime = DateTime.now();
   DateTime resetTime = DateTime.now();
-  List<String> records = [];
+  List<Record> records = [];
   Timer timer;
   bool hasStarted = false;
+
+  @override
+  void dispose() {
+    if(timer != null) {
+      timer.cancel();
+    }
+    super.dispose();
+  }
 
   void timerTick(timer) {
     setState(() {
@@ -47,7 +62,7 @@ class Day1State extends State<Day1> {
 
   void record() {
     setState(() {
-      records.add(formatDuration(resetTime.difference(startTime)));
+      records.add(Record(records.length, formatDuration(resetTime.difference(startTime))));
       resetTime = startTime;
     });
   }
@@ -191,7 +206,7 @@ class WatchControls extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                 ),
-                child: Text('Record'),
+                child: Text('Lap'),
               ),
             ),
           ),
@@ -211,9 +226,12 @@ class WatchControls extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                 ),
-                child: Text(startButtonText, style: TextStyle(
-                  color: startButtonColor,
-                ),),
+                child: Text(
+                  startButtonText,
+                  style: TextStyle(
+                    color: startButtonColor,
+                  ),
+                ),
               ),
             ),
           ),
@@ -224,7 +242,7 @@ class WatchControls extends StatelessWidget {
 }
 
 class WatchRecords extends StatelessWidget {
-  final List<String> records;
+  final List<Record> records;
 
   WatchRecords(this.records);
 
@@ -232,15 +250,23 @@ class WatchRecords extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView(
-        children: records
+        children: records.reversed.toList()
             .asMap()
             .map((index, record) => MapEntry(
                 index,
-                Row(
-                  children: <Widget>[
-                    Text('Lap ${index}'),
-                    Text(record),
-                  ],
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                  decoration: BoxDecoration(
+                      border: Border(
+                          bottom:
+                              BorderSide(width: 1, color: Color(0xFFDDDDDD)))),
+                  child: Row(
+                    children: <Widget>[
+                      Text('Lap ${record.index}'),
+                      Spacer(),
+                      Text(record.record),
+                    ],
+                  ),
                 )))
             .values
             .toList(),
