@@ -42,11 +42,11 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: CustomCupertinoNavBar(
+    return Scaffold(
+      appBar: CustomCupertinoNavBar(
         title: SCREEN_TITLE,
       ),
-      child: Column(
+      body: Column(
         children: <Widget>[
           Expanded(
             child: Padding(

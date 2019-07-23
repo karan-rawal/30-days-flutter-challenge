@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:thirty_days_of_flutter/common/widgets/custom-cupertino-nav-bar.dart';
 
 class Day1 extends StatelessWidget {
@@ -7,11 +8,11 @@ class Day1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-        navigationBar: CustomCupertinoNavBar(
+    return Scaffold(
+        appBar: CustomCupertinoNavBar(
           title: SCREEN_TITLE,
         ),
-        child: Center(
+        body: Center(
           child: Text(Day1.SCREEN_TITLE),
         ));
   }
