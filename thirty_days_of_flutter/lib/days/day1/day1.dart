@@ -17,7 +17,7 @@ formatDuration(Duration duration) {
   millis = millis.substring(0, 3);
   String twoDigitMillis = twoDigits(int.parse(millis));
 
-  return "${twoDigitMinutes}:$twoDigitSeconds:$twoDigitMillis";
+  return "$twoDigitMinutes:$twoDigitSeconds:$twoDigitMillis";
 }
 
 class Record {
