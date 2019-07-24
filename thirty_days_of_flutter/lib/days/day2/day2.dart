@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:location/location.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:thirty_days_of_flutter/common/widgets/custom-cupertino-nav-bar.dart';
 import 'package:thirty_days_of_flutter/days/day2/screens/map-screen.dart';
@@ -27,7 +28,18 @@ class _Day2State extends State<Day2> {
         content: Text("Please grant location permission"),
       ));
     } else {
-      Navigator.pushNamed(context, MapScreen.SCREEN_ROUTE);
+      setState(() {
+        isBusy = true;
+      });
+      Location location = Location();
+      LocationData locationData = await location.getLocation();
+      Navigator.pushNamed(context, MapScreen.SCREEN_ROUTE,
+              arguments: locationData)
+          .then((obj) {
+        setState(() {
+          isBusy = false;
+        });
+      });
     }
   }
 
@@ -39,13 +51,14 @@ class _Day2State extends State<Day2> {
       ),
       body: Builder(
         builder: (context) => Center(
-          child: RaisedButton(
-            onPressed: () {
-              _onFindLocationPress(context);
-            },
-            child:
-                isBusy ? CircularProgressIndicator() : Text(Day2.SCREEN_TITLE),
-          ),
+          child: isBusy
+              ? CircularProgressIndicator()
+              : RaisedButton(
+                  onPressed: () {
+                    _onFindLocationPress(context);
+                  },
+                  child: Text(Day2.SCREEN_TITLE),
+                ),
         ),
       ),
     );
