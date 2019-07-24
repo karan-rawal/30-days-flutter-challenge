@@ -1,26 +1,51 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:thirty_days_of_flutter/common/widgets/custom-cupertino-nav-bar.dart';
 import 'package:thirty_days_of_flutter/days/day2/screens/map-screen.dart';
 
-class Day2 extends StatelessWidget {
-  static const SCREEN_TITLE = 'Find my location';
+class Day2 extends StatefulWidget {
+  static const SCREEN_TITLE = 'Day 2 - Find my location';
   static const SCREEN_ROUTE = 'day2';
 
-  void _onFindLocationPress(context) {
-    Navigator.pushNamed(context, MapScreen.SCREEN_ROUTE);
+  @override
+  State<Day2> createState() {
+    return _Day2State();
+  }
+}
+
+class _Day2State extends State<Day2> {
+  bool isBusy = false;
+
+  void _onFindLocationPress(context) async {
+    Map<PermissionGroup, PermissionStatus> permission =
+        await PermissionHandler()
+            .requestPermissions([PermissionGroup.location]);
+
+    if (permission[PermissionGroup.location] != PermissionStatus.granted) {
+      Scaffold.of(context).showSnackBar(SnackBar(
+        content: Text("Please grant location permission"),
+      ));
+    } else {
+      Navigator.pushNamed(context, MapScreen.SCREEN_ROUTE);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomCupertinoNavBar(
-        title: SCREEN_TITLE,
+        title: Day2.SCREEN_TITLE,
       ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () { _onFindLocationPress(context); },
-          child: Text(SCREEN_TITLE),
+      body: Builder(
+        builder: (context) => Center(
+          child: RaisedButton(
+            onPressed: () {
+              _onFindLocationPress(context);
+            },
+            child:
+                isBusy ? CircularProgressIndicator() : Text(Day2.SCREEN_TITLE),
+          ),
         ),
       ),
     );
