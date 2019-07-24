@@ -1,4 +1,4 @@
-package com.example.thirty_days_of_flutter;
+package com.karanrawal.thirty_days_of_flutter;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
