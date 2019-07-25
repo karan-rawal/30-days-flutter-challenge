@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:thirty_days_of_flutter/days/day1/day1.dart';
 import 'package:thirty_days_of_flutter/days/day2/day2.dart';
 import 'package:thirty_days_of_flutter/days/day2/screens/map-screen.dart';
+import 'package:thirty_days_of_flutter/days/day3/day3.dart';
 import 'package:thirty_days_of_flutter/menu.dart';
 
 void main() => runApp(Main());
@@ -18,7 +19,8 @@ class Main extends StatelessWidget {
         Menu.SCREEN_ROUTE: (context) => Menu(),
         Day1.SCREEN_ROUTE: (context) => Day1(),
         Day2.SCREEN_ROUTE: (context) => Day2(),
-        MapScreen.SCREEN_ROUTE: (context) => MapScreen()
+        MapScreen.SCREEN_ROUTE: (context) => MapScreen(),
+        Day3.SCREEN_ROUTE: (context) => Day3(),
       },
     );
   }
