@@ -25,7 +25,7 @@ final List<Intro> intros = [
 ];
 
 class Day4 extends StatefulWidget {
-  static const SCREEN_TITLE = 'Day4 - Spotify Login Screen';
+  static const SCREEN_TITLE = 'Day 4 - Spotify Login Screen';
   static const SCREEN_ROUTE = 'day4';
 
   @override
