@@ -23,6 +23,7 @@ dependencies:
   google_maps_flutter: any
   location: any
   flutter_swiper : any
+  http: any
   flutter:
     sdk: flutter
 
