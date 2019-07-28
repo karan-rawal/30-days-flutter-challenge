@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class Day6 extends StatefulWidget {
-  static const SCREEN_TITLE = 'Day 6 - Twitter User Page';
+  static const SCREEN_TITLE = 'Day 6 - Kind of Twitter';
   static const SCREEN_ROUTE = 'day6';
 
   @override
