@@ -7,6 +7,7 @@ import 'package:thirty_days_of_flutter/days/day3/day3.dart';
 import 'package:thirty_days_of_flutter/days/day4/day4.dart';
 import 'package:thirty_days_of_flutter/days/day5/day5.dart';
 import 'package:thirty_days_of_flutter/days/day6/day6.dart';
+import 'package:thirty_days_of_flutter/days/day7/day7.dart';
 
 class MenuItemData {
   String name;
@@ -44,6 +45,7 @@ class Menu extends StatelessWidget {
     MenuItemData(Day4.SCREEN_TITLE, Day4.SCREEN_ROUTE),
     MenuItemData(Day5.SCREEN_TITLE, Day5.SCREEN_ROUTE),
     MenuItemData(Day6.SCREEN_TITLE, Day6.SCREEN_ROUTE),
+    MenuItemData(Day7.SCREEN_TITLE, Day7.SCREEN_ROUTE),
   ];
 
   void _onMenuItemPress(BuildContext context, MenuItemData menu) {
