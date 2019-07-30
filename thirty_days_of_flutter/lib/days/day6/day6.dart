@@ -65,6 +65,19 @@ class _Day6State extends State<Day6> {
 
   @override
   Widget build(BuildContext context) {
+    Map<String, String> arguments = ModalRoute.of(context).settings.arguments;
+
+    String name;
+    String url;
+
+    if (arguments != null) {
+      name = arguments['name'];
+      url = arguments['url'];
+    }
+    if (name == null) {
+      name = 'Github';
+    }
+
     var headerAlpha = getHeaderVisibility(scrollY);
 
     Widget header = Positioned(
@@ -105,17 +118,21 @@ class _Day6State extends State<Day6> {
                   Transform(
                     alignment: FractionalOffset.bottomLeft,
                     transform: Matrix4.identity()..scale(getIconScale(scrollY)),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(3.0),
-                          ),
-                          image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: AssetImage('assets/github.png')),
-                          border: Border.all(color: Colors.white, width: 5.0)),
-                      width: 80,
-                      height: 80,
+                    child: Hero(
+                      tag: url == null? 'someTag' : url,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(3.0),
+                            ),
+                            border:
+                                Border.all(color: Colors.white, width: 5.0)),
+                        width: 80,
+                        height: 80,
+                        child: url == null
+                            ? Image.asset('assets/github.png')
+                            : Image.network(url),
+                      ),
                     ),
                   ),
                   Spacer(),
@@ -156,12 +173,15 @@ class _Day6State extends State<Day6> {
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: Text(
-                  'Github',
-                  style: TextStyle(
-                      color: Color(0xFF292F33),
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.w500),
+                child: Hero(
+                  tag: name,
+                  child: Text(
+                    name,
+                    style: TextStyle(
+                        color: Color(0xFF292F33),
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
               ),
               Container(
