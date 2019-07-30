@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:thirty_days_of_flutter/days/day1/day1.dart';
 import 'package:thirty_days_of_flutter/days/day2/day2.dart';
 import 'package:thirty_days_of_flutter/days/day2/screens/map-screen.dart';
@@ -7,6 +8,7 @@ import 'package:thirty_days_of_flutter/days/day4/day4.dart';
 import 'package:thirty_days_of_flutter/days/day5/day5.dart';
 import 'package:thirty_days_of_flutter/days/day6/day6.dart';
 import 'package:thirty_days_of_flutter/days/day7/day7.dart';
+import 'package:thirty_days_of_flutter/days/day8/day8.dart';
 import 'package:thirty_days_of_flutter/menu.dart';
 
 void main() => runApp(Main());
@@ -17,6 +19,9 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
+      localizationsDelegates: [
+        DefaultMaterialLocalizations.delegate,
+      ],
       title: Main.APP_TITLE,
       initialRoute: Menu.SCREEN_ROUTE,
       routes: {
@@ -29,6 +34,7 @@ class Main extends StatelessWidget {
         Day5.SCREEN_ROUTE: (context) => Day5(),
         Day6.SCREEN_ROUTE: (context) => Day6(),
         Day7.SCREEN_ROUTE: (context) => Day7(),
+        Day8.SCREEN_ROUTE: (context) => Day8(),
       },
     );
   }
