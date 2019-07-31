@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class CustomCupertinoNavBar extends CupertinoNavigationBar {
-  final title;
+  final String title;
 
   CustomCupertinoNavBar({@required this.title})
       : super(
