@@ -9,6 +9,7 @@ import 'package:thirty_days_of_flutter/days/day5/day5.dart';
 import 'package:thirty_days_of_flutter/days/day6/day6.dart';
 import 'package:thirty_days_of_flutter/days/day7/day7.dart';
 import 'package:thirty_days_of_flutter/days/day8/day8.dart';
+import 'package:thirty_days_of_flutter/days/day9/day9.dart';
 import 'package:thirty_days_of_flutter/menu.dart';
 
 void main() => runApp(Main());
@@ -35,6 +36,7 @@ class Main extends StatelessWidget {
         Day6.SCREEN_ROUTE: (context) => Day6(),
         Day7.SCREEN_ROUTE: (context) => Day7(),
         Day8.SCREEN_ROUTE: (context) => Day8(),
+        Day9.SCREEN_ROUTE: (context) => Day9(),
       },
     );
   }

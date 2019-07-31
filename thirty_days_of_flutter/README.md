@@ -1,6 +1,6 @@
 # thirty_days_of_flutter
 
-A new Flutter project.
+30 days of flutter.
 
 ## Getting Started
 
