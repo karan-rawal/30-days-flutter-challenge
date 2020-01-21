@@ -1,6 +1,6 @@
 # thirty_days_of_flutter
 
-30 days of flutter.
+30 days flutter challenge.
 
 ## Getting Started
 
